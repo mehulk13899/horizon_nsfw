@@ -8,7 +8,7 @@ on:
     
 jobs:
 
-  CI:
+  Deploy:
     runs-on: ubuntu-latest
 
     steps:   
@@ -17,7 +17,13 @@ jobs:
       - name: Install required apt packages
         run: |
           sudo apt install python3.8-dev
-          
+
+      - name: Install update Dependency
+        run: apt-get update
+
+      - name: Install Other Dependency
+        run: apt-get install ffmpeg libsm6 libxext6  -y
+ 
       # Step-1 Setup Python
       - name: Set up Python
         # This action sets up a Python environment for use in actions
@@ -54,8 +60,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: StaxDeployment
-          environment_name: Staxdeployment-env
+          application_name: horizon_nsfw
+          environment_name: Horizonnsfw-env
           region: us-east-2
           version_label: ver-${{ github.sha }}
           deployment_package: deploy.zip

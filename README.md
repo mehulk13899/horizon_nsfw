@@ -1,4 +1,4 @@
-#  Installation:
+#  Installation Into Local:
 
 1. Ensure the python3 version is 3.8.12. To check, run python3 -V. If you do not have it, you can install it here
 
@@ -8,6 +8,15 @@
 NOTE: To stop the virtual environment at any time, run (venv) $ deactivate
 
 4. Install all the requirements, including flask. Be sure not to use sudo as this will install flask in the global environment instead of the virtual environment: (venv) $ pip3 install -r requirements.txt
+
+5. Start server ==> uvicorn main:app --host 0.0.0.0 --port 8000
+
+
+#  Installation Into Production:
+
+1. login with root
+2. cd ..
+3. cd /var/horizon_nsfw
 
 5. Start server ==> uvicorn main:app --host 0.0.0.0 --port 8000
 
@@ -42,9 +51,17 @@ sudo systemctl enable docker.service
 sudo systemctl start docker.service
 sudo systemctl status docker.service
 
+check runnign process
+1. docker ps
+
+stop running process
+docker stop container_hash
+
 
 nginix
 
 sudo service nginx start
 sudo service nginx status
 sudo service nginx stop
+
+

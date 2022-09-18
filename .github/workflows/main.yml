@@ -18,11 +18,11 @@ jobs:
         run: |
           sudo apt install python3.8-dev
 
-      - name: Install update Dependency
-        run: apt-get update
+      # - name: Install update Dependency
+      #   run: apt-get update
 
-      - name: Install Other Dependency
-        run: apt-get install ffmpeg libsm6 libxext6  -y
+      # - name: Install Other Dependency
+      #   run: apt-get install ffmpeg libsm6 libxext6  -y
  
       # Step-1 Setup Python
       - name: Set up Python

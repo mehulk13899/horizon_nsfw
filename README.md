@@ -37,3 +37,7 @@ https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/
 # build docker without cache
 #!/bin/bash
 docker build --no-cache . -t nsfw_backend3.8:latest
+
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+sudo systemctl status docker.service

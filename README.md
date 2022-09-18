@@ -30,3 +30,10 @@ image==> https://github.com/EBazarov/nsfw_data_source_urls
 # Used Modules
 ==> https://github.com/bhky/opennsfw2
 
+
+https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/
+
+
+# build docker without cache
+#!/bin/bash
+docker build --no-cache . -t nsfw_backend3.8:latest

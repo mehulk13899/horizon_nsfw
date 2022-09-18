@@ -41,3 +41,10 @@ docker build --no-cache . -t nsfw_backend3.8:latest
 sudo systemctl enable docker.service
 sudo systemctl start docker.service
 sudo systemctl status docker.service
+
+
+nginix
+
+sudo service nginx start
+sudo service nginx status
+sudo service nginx stop

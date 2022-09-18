@@ -1,4 +1,4 @@
-from functions import download_image
+from functions import download_image,download_video
 from config import PORT
 import os
 import uvicorn
@@ -40,16 +40,27 @@ async def detect_nsfw(url: str):
 
 @app.get("/image")
 async def opennsfw2image(url: str):
-        image_path = "path/to/your/image.jpg"
-        if not url:
-            return {"ERROR": "URL PARAMETER EMPTY"}
-        image = await download_image(url)
-        print("image",image)
-        # if not image:
-        #     return {"ERROR": "IMAGE SIZE TOO LARGE OR INCORRECT URL"}
-        # nsfw_probability = n2.predict_image(image_path)
-        return []
+    if not url:
+        return {"ERROR": "URL PARAMETER EMPTY"}
+    image = await download_image(url)
+    print("image",image)
+    if not image:
+        return {"ERROR": "IMAGE SIZE TOO LARGE OR INCORRECT URL"}
+    nsfw_probability = n2.predict_image(image)
+    os.remove(image)
+    return nsfw_probability
 
+@app.get("/video")
+async def opennsfw2video(url: str):
+    if not url:
+        return {"ERROR": "URL PARAMETER EMPTY"}
+    image = await download_video(url)
+    print("image",image)
+    if not image:
+        return {"ERROR": "IMAGE SIZE TOO LARGE OR INCORRECT URL"}
+    elapsed_seconds, nsfw_probabilities = n2.predict_video_frames(image)
+    os.remove(image)
+    return [elapsed_seconds,nsfw_probabilities]
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, log_level="info")

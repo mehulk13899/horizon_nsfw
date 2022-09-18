@@ -19,3 +19,15 @@ async def download_image(url):
             else:
                 return False
     return file_name
+
+async def download_video(url):
+    file_name = f"{randint(6969, 6999)}.mp4"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            if resp.status == 200:
+                f = await aiofiles.open(file_name, mode='wb')
+                await f.write(await resp.read())
+                await f.close()
+            else:
+                return False
+    return file_name
